@@ -1,4 +1,4 @@
-import { BigInt } from "@graphprotocol/graph-ts"
+import { BigInt, log } from "@graphprotocol/graph-ts"
 import {
   Contract,
   ProtoUpdated,
@@ -12,7 +12,7 @@ import {
   ApprovalForAll,
   OwnershipTransferred
 } from "../generated/Contract/Contract"
-import { Token } from "../generated/schema"
+import { Owner, Token } from "../generated/schema"
 
 // export function handleProtoUpdated(event: ProtoUpdated): void {}
 
@@ -26,28 +26,28 @@ import { Token } from "../generated/schema"
 
 // export function handleTokenPropertySet(event: TokenPropertySet): void {}
 
-// export function handleNewGravatar(event: NewGravatar): void {
-//   let gravatar = new Gravatar(event.params.id.toHex())
-//   gravatar.owner = event.params.owner
-//   gravatar.displayName = event.params.displayName
-//   gravatar.imageUrl = event.params.imageUrl
-//   gravatar.save()
-// }
+// This will work
+// let numbers = entity.numbers
+// numbers.push(BigInt.fromI32(1))
+// entity.numbers = numbers
+// entity.save()
 
 export function handleTransfer(event: Transfer): void {
-    let id = event.params.tokenId.toString();
+    let tokenId = event.params.tokenId.toString();
+    let token = new Token(tokenId);
 
-    let token = Token.load(id) || new Token(id);
-
-    token.owner = event.params.to;
+    let ownerId = event.params.to.toHexString();
+    let owner = new Owner(ownerId);
 
     let contract = Contract.bind(event.address);
 
     let details = contract.getDetails(event.params.tokenId);
     token.proto = details.value0;
     token.quality = details.value1;
+    token.owner = ownerId;
 
     token.save();
+    owner.save();
 }
 
 // export function handleApproval(event: Approval): void {}

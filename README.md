@@ -21,6 +21,20 @@ Subgraph for querying Gods Unchained Token info
 
 https://thegraph.com/explorer/subgraph/djrosenbaum/godsunchained?version=pending
 
+Example Query
+```
+{
+  tokens(first: 5) {
+    id
+    owner {
+      id
+    }
+    proto
+    quality
+  }
+}
+```
+
 ## Pre-Development
 <a href="https://thegraph.com/"><img src="./the-graph.png" title="the graph" width=400/></a>
 

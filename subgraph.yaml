@@ -17,6 +17,7 @@ dataSources:
       language: wasm/assemblyscript
       entities:
         - Token
+        - Owner
         # - ProtoUpdated
         # - SeasonStarted
         # - QualityChanged
