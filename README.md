@@ -22,7 +22,9 @@ Subgraph for querying Gods Unchained Token info
 https://thegraph.com/explorer/subgraph/djrosenbaum/godsunchained?version=pending
 
 ## Pre-Development
-Before developming get familiar with The Graph docs.
+<a href="https://thegraph.com/"><img src="./the-graph.png" title="the graph" width=400/></a>
+
+Before developing get familiar with The Graph docs.
 
 https://thegraph.com/docs/quick-start
 
