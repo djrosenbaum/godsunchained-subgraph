@@ -1,0 +1,6 @@
+type Token @entity {
+  id: ID! # where id is the tokenID from the contract
+  owner: Bytes! # address
+  proto: Int! # uint16
+  quality: Int! # uint8
+}
