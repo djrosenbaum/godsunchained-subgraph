@@ -1,0 +1,160 @@
+body {
+    background-color: #111;
+    font-family: Cinzel, Arial, Helvetica, sans-serif;
+}
+
+a {
+    font-family: Cinzel, Arial, Helvetica, sans-serif;
+    text-decoration: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+.header {
+    background-color: #111;
+    padding: 50px;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+.header .headline {
+    color: #ccc;
+    font-weight: bold;
+    font-size: 30px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.header .caption {
+    color: #ccc;
+    font-size: 16px;
+    text-align: center;
+}
+
+.header .input-wrapper {
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 80px 0;
+    width: 100%;
+}
+
+.header input {
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, .1);
+    box-sizing: border-box;
+    color: #c1a56c;
+    font-weight: 100;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-family: Cinzel, Arial, Helvetica, sans-serif;
+    width: 100%;
+}
+
+.header .button-wrapper {
+    padding-top: 10px;
+}
+
+.header button {
+    background-color: #6b9dda;
+    border: none;
+    font-family: Cinzel, Arial, Helvetica, sans-serif;
+    padding: 6px;
+    width: 100%;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 100;
+}
+
+.page-wrapper {
+    background-color: #030406;
+    margin: 0 auto;
+    max-width: 1440px;
+    padding: 30px;
+}
+
+.footer {
+    background-color: #111;
+    height: 50vh;
+}
+
+/* CSS Grid: https://alligator.io/css/align-justify/ */
+
+.cards {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    grid-gap: 20px;
+}
+
+.card-wrapper {
+    background-color: #111;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #333;
+    border-radius: 6px;
+}
+
+.card-wrapper .tokenid {
+    color: #444;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 10px;
+    text-shadow: 1px 1px #000;
+}
+
+/* the placehodler Holds On for Dear Life */
+
+.card-wrapper .placehodler {
+    height: 252px;
+    width: 200px;
+}
+
+@media (max-width: 1250px) {
+    .cards {
+        grid-template-columns: auto auto auto auto;
+    }
+    .header {
+        padding: 45px;
+    }
+    .header .input-wrapper {
+        padding: 60px 0;
+    }
+}
+
+@media (max-width: 1000px) {
+    .cards {
+        grid-template-columns: auto auto auto;
+    }
+    .header {
+        padding: 40px;
+    }
+    .header .input-wrapper {
+        padding: 50px 0;
+    }
+}
+
+@media (max-width: 750px) {
+    .cards {
+        grid-template-columns: auto auto;
+    }
+    .header {
+        padding: 35px;
+    }
+    .header .input-wrapper {
+        padding: 40px 0;
+    }
+}
+
+@media (max-width: 500px) {
+    .cards {
+        grid-template-columns: auto;
+    }
+    .header {
+        padding: 30px;
+    }
+    .header .input-wrapper {
+        padding: 30px 0;
+    }
+}
