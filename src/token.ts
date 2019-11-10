@@ -46,6 +46,9 @@ export function handleTransfer(event: Transfer): void {
     token.quality = details.value1;
     token.owner = ownerId;
 
+    let balance = contract.balanceOf(event.params.to);
+    owner.balance = balance;
+
     token.save();
     owner.save();
 }

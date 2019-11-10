@@ -50,6 +50,15 @@ export class Owner extends Entity {
   set tokens(value: Array<string>) {
     this.set("tokens", Value.fromStringArray(value));
   }
+
+  get balance(): BigInt {
+    let value = this.get("balance");
+    return value.toBigInt();
+  }
+
+  set balance(value: BigInt) {
+    this.set("balance", Value.fromBigInt(value));
+  }
 }
 
 export class Token extends Entity {
