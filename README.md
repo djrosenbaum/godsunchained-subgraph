@@ -1,6 +1,8 @@
 # Gods Unchained Subgraph
 TheGraph - Gods Unchained - ETH Waterloo hackathon project
 
+[Try out the Demo](https://djrosenbaum.github.io/godsunchained-subgraph/)
+
 <a href="https://godsunchained.com/"><img src="./gods-unchained.jpg" title="gods unchained" width=600/></a>
 
 
