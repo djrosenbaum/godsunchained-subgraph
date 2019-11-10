@@ -83,7 +83,8 @@ button {
 
 .cards {
     display: grid;
-    grid-template-columns: auto auto auto auto auto;
+    /* grid-template-columns: auto auto auto auto auto; */
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-gap: 20px;
 }
 
@@ -113,7 +114,8 @@ button {
 
 @media (max-width: 1250px) {
     .cards {
-        grid-template-columns: auto auto auto auto;
+        /* grid-template-columns: auto auto auto auto; */
+        grid-template-columns: 1fr 1fr 1fr 1fr;
     }
     .header {
         padding: 45px;
@@ -125,7 +127,8 @@ button {
 
 @media (max-width: 1000px) {
     .cards {
-        grid-template-columns: auto auto auto;
+        /* grid-template-columns: auto auto auto; */
+        grid-template-columns: 1fr 1fr 1fr;
     }
     .header {
         padding: 40px;
@@ -137,7 +140,8 @@ button {
 
 @media (max-width: 750px) {
     .cards {
-        grid-template-columns: auto auto;
+        /* grid-template-columns: auto auto; */
+        grid-template-columns: 1fr 1fr;
     }
     .header {
         padding: 35px;
@@ -149,7 +153,8 @@ button {
 
 @media (max-width: 500px) {
     .cards {
-        grid-template-columns: auto;
+        /* grid-template-columns: auto; */
+        grid-template-columns: 1fr;
     }
     .header {
         padding: 30px;

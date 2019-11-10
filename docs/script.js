@@ -29,25 +29,23 @@ function getMarkup(data) {
     }).join('');
 }
 
+function updateUrl(address) {
+    const state = { address };
+    const title = 'Gods Ungraphed';
+    const url = `${window.location.href.split('?')[0]}?tokenHolder=${address}`;
 
-// function getMarkup(cards, start, increment) {
-//     return Object.keys(cards).map((protoId) => {
-//         return cards[protoId].map((shine) => {
-//             // return `<div class="card-wrapper"><composited-card class="card" protoId="${protoId}" quality="${getQuality(shine)}" responsiveSrcsetSizes="(min-width: 250px) 160px, 320px"></composited-card></div>`;
-//             return '<div class="card-wrapper"><div style="width:200px;height:252px;"></div></div>';
-//         });
-//     }).flat().slice(start, increment).join(' ');
-// }
-
-function getQuality(shine) {
-    if (shine < 1000) {
-        return 4;
-    }
-    return (shine + '')[0];
+    history.pushState(state, title, url);
 }
 
 async function displayCards() {
-    const address = document.getElementById('input_address').value.toLowerCase() || '0x0006e4548aed4502ec8c844567840ce6ef1013f5';
+    const defaultAddress = '0x0006e4548aed4502ec8c844567840ce6ef1013f5';
+    const inputAddress = document.getElementById('input_address').value.toLowerCase();
+
+    const address = inputAddress || defaultAddress;
+
+    document.getElementById('input_address').value = address;
+
+    updateUrl(address);
 
     const data = await getCardsFromAddress(address);
 
@@ -62,5 +60,13 @@ async function displayCards() {
 }
 
 window.addEventListener('DOMContentLoaded', (event) => {
-    document.getElementById('display_cards').addEventListener('click', displayCards);
+    const display_cards = document.getElementById('display_cards');
+    display_cards.addEventListener('click', displayCards);
+
+    const urlParams = new URLSearchParams(window.location.search);
+
+    if (urlParams.has('tokenHolder')) {
+        document.getElementById('input_address').value = urlParams.get('tokenHolder');
+        display_cards.click();
+    }
 });
