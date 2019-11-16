@@ -51,13 +51,13 @@ export class Owner extends Entity {
     this.set("tokens", Value.fromStringArray(value));
   }
 
-  get balance(): BigInt {
+  get balance(): i32 {
     let value = this.get("balance");
-    return value.toBigInt();
+    return value.toI32();
   }
 
-  set balance(value: BigInt) {
-    this.set("balance", Value.fromBigInt(value));
+  set balance(value: i32) {
+    this.set("balance", Value.fromI32(value));
   }
 }
 

@@ -38,14 +38,14 @@ dataSources:
         #   handler: handleSeasonStarted
         # - event: QualityChanged(indexed uint256,uint8,address)
         #   handler: handleQualityChanged
-        # - event: CardsMinted(indexed uint256,address,uint16[],uint8[])
-        #   handler: handleCardsMinted
+        - event: CardsMinted(indexed uint256,address,uint16[],uint8[])
+          handler: handleCardsMinted
         # - event: ClassPropertySet(indexed bytes32,bytes32)
         #   handler: handleClassPropertySet
         # - event: TokenPropertySet(indexed uint256,indexed bytes32,bytes32)
         #   handler: handleTokenPropertySet
-        - event: Transfer(indexed address,indexed address,indexed uint256)
-          handler: handleTransfer
+        # - event: Transfer(indexed address,indexed address,indexed uint256)
+        #   handler: handleTransfer
         # - event: Approval(indexed address,indexed address,indexed uint256)
         #   handler: handleApproval
         # - event: ApprovalForAll(indexed address,indexed address,bool)
