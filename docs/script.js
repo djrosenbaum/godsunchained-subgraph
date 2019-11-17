@@ -5,7 +5,7 @@
 // }
 
 async function getCardsFromAddress(address) {
-    return await fetch('https://api.thegraph.com/subgraphs/id/QmXdzK7sh7USzZYwZBVDk2jqZqNUNyVkyfUU9jvE9Aenm4', {
+    return await fetch('https://api.thegraph.com/subgraphs/id/QmXZdWFJedzz5umg8Bo5qwav8sPyeLCJ2gzBcaoAWWuj2i', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',

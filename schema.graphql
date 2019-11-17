@@ -1,7 +1,7 @@
 type Owner @entity {
   id: ID! # where id is the 0x address
   tokens: [Token!]! @derivedFrom(field: "owner") # array of tokens
-  balance: Int! #total number of tokens
+  balance: BigInt! #total number of tokens
 }
 
 type Token @entity {

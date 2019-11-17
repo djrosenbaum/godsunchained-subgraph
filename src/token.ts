@@ -1,16 +1,6 @@
-import { EthereumValue, BigInt, Value, log } from "@graphprotocol/graph-ts"
+import { BigInt } from "@graphprotocol/graph-ts"
 import {
-  Contract,
-  ProtoUpdated,
-  SeasonStarted,
-  QualityChanged,
   CardsMinted,
-  ClassPropertySet,
-  TokenPropertySet,
-  Transfer,
-  Approval,
-  ApprovalForAll,
-  OwnershipTransferred
 } from "../generated/Contract/Contract"
 import { Owner, Token } from "../generated/schema"
 
@@ -26,19 +16,18 @@ export function handleCardsMinted(event: CardsMinted): void {
   let qualities = event.params.qualities;
   let to = event.params.to;
 
+  // log.debug('Start: {}, Protos: {}, Qualities: {}, To: {}', [start.toString(), BigInt.fromI32(protos.length).toString(), BigInt.fromI32(qualities.length).toString(), to.toHexString()])
+
+  let protoLength = BigInt.fromI32(protos.length);
+
   let ownerId = to.toHexString();
   let owner = Owner.load(ownerId);
   if (owner == null) {
     owner = new Owner(ownerId);
-    owner.balance = 0;
+    owner.balance = protoLength;
+  } else {
+    owner.balance = owner.balance.plus(protoLength);
   }
-
-  let ownerBalance = BigInt.fromI32(owner.balance);
-  let protoLength = BigInt.fromI32(protos.length);
-
-  owner.balance = ownerBalance.plus(protoLength).toI32();
-
-  owner.save();
 
   for (let i = 0; i < protos.length; i++) {
     let index = BigInt.fromI32(i);
@@ -50,6 +39,8 @@ export function handleCardsMinted(event: CardsMinted): void {
 
     token.save();
   }
+
+  owner.save();
 }
 
 // export function handleClassPropertySet(event: ClassPropertySet): void {}
