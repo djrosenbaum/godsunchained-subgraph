@@ -1,12 +1,21 @@
 type Owner @entity {
   id: ID! # where id is the 0x address
   tokens: [Token!]! @derivedFrom(field: "owner") # array of tokens
-  balance: BigInt! #total number of tokens
 }
 
 type Token @entity {
   id: ID! # where id is the tokenID from the contract
-  owner: Owner! # address
-  proto: Int! # uint16
-  quality: Int! # uint8
+  owner: Owner!
+  proto: Proto
+  quality: Quality
+}
+
+type Proto @entity {
+  id: ID! # where id is the proto from the contract
+  tokens: [Token!]! @derivedFrom(field: "proto")
+}
+
+type Quality @entity {
+  id: ID! # where id is the quality from the contract
+  tokens: [Token!]! @derivedFrom(field: "quality")
 }

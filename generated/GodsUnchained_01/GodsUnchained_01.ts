@@ -267,7 +267,7 @@ export class OwnershipTransferred__Params {
   }
 }
 
-export class Contract__getBatchResult {
+export class GodsUnchained_01__getBatchResult {
   value0: BigInt;
   value1: i32;
 
@@ -284,7 +284,7 @@ export class Contract__getBatchResult {
   }
 }
 
-export class Contract__protosResult {
+export class GodsUnchained_01__protosResult {
   value0: boolean;
   value1: boolean;
   value2: i32;
@@ -332,7 +332,7 @@ export class Contract__protosResult {
   }
 }
 
-export class Contract__batchesResult {
+export class GodsUnchained_01__batchesResult {
   value0: BigInt;
   value1: i32;
 
@@ -349,7 +349,7 @@ export class Contract__batchesResult {
   }
 }
 
-export class Contract__getDetailsResult {
+export class GodsUnchained_01__getDetailsResult {
   value0: i32;
   value1: i32;
 
@@ -366,7 +366,7 @@ export class Contract__getDetailsResult {
   }
 }
 
-export class Contract__seasonsResult {
+export class GodsUnchained_01__seasonsResult {
   value0: i32;
   value1: i32;
 
@@ -383,9 +383,9 @@ export class Contract__seasonsResult {
   }
 }
 
-export class Contract extends SmartContract {
-  static bind(address: Address): Contract {
-    return new Contract("Contract", address);
+export class GodsUnchained_01 extends SmartContract {
+  static bind(address: Address): GodsUnchained_01 {
+    return new GodsUnchained_01("GodsUnchained_01", address);
   }
 
   supportsInterface(interfaceId: Bytes): boolean {
@@ -608,18 +608,18 @@ export class Contract extends SmartContract {
     return CallResult.fromValue(value[0].toBytes());
   }
 
-  getBatch(index: BigInt): Contract__getBatchResult {
+  getBatch(index: BigInt): GodsUnchained_01__getBatchResult {
     let result = super.call("getBatch", [
       EthereumValue.fromUnsignedBigInt(index)
     ]);
 
-    return new Contract__getBatchResult(
+    return new GodsUnchained_01__getBatchResult(
       result[0].toBigInt(),
       result[1].toI32()
     );
   }
 
-  try_getBatch(index: BigInt): CallResult<Contract__getBatchResult> {
+  try_getBatch(index: BigInt): CallResult<GodsUnchained_01__getBatchResult> {
     let result = super.tryCall("getBatch", [
       EthereumValue.fromUnsignedBigInt(index)
     ]);
@@ -628,7 +628,10 @@ export class Contract extends SmartContract {
     }
     let value = result.value;
     return CallResult.fromValue(
-      new Contract__getBatchResult(value[0].toBigInt(), value[1].toI32())
+      new GodsUnchained_01__getBatchResult(
+        value[0].toBigInt(),
+        value[1].toI32()
+      )
     );
   }
 
@@ -846,12 +849,12 @@ export class Contract extends SmartContract {
     return CallResult.fromValue(value[0].toBytes());
   }
 
-  protos(param0: BigInt): Contract__protosResult {
+  protos(param0: BigInt): GodsUnchained_01__protosResult {
     let result = super.call("protos", [
       EthereumValue.fromUnsignedBigInt(param0)
     ]);
 
-    return new Contract__protosResult(
+    return new GodsUnchained_01__protosResult(
       result[0].toBoolean(),
       result[1].toBoolean(),
       result[2].toI32(),
@@ -864,7 +867,7 @@ export class Contract extends SmartContract {
     );
   }
 
-  try_protos(param0: BigInt): CallResult<Contract__protosResult> {
+  try_protos(param0: BigInt): CallResult<GodsUnchained_01__protosResult> {
     let result = super.tryCall("protos", [
       EthereumValue.fromUnsignedBigInt(param0)
     ]);
@@ -873,7 +876,7 @@ export class Contract extends SmartContract {
     }
     let value = result.value;
     return CallResult.fromValue(
-      new Contract__protosResult(
+      new GodsUnchained_01__protosResult(
         value[0].toBoolean(),
         value[1].toBoolean(),
         value[2].toI32(),
@@ -906,15 +909,18 @@ export class Contract extends SmartContract {
     return CallResult.fromValue(value[0].toBoolean());
   }
 
-  batches(param0: BigInt): Contract__batchesResult {
+  batches(param0: BigInt): GodsUnchained_01__batchesResult {
     let result = super.call("batches", [
       EthereumValue.fromUnsignedBigInt(param0)
     ]);
 
-    return new Contract__batchesResult(result[0].toBigInt(), result[1].toI32());
+    return new GodsUnchained_01__batchesResult(
+      result[0].toBigInt(),
+      result[1].toI32()
+    );
   }
 
-  try_batches(param0: BigInt): CallResult<Contract__batchesResult> {
+  try_batches(param0: BigInt): CallResult<GodsUnchained_01__batchesResult> {
     let result = super.tryCall("batches", [
       EthereumValue.fromUnsignedBigInt(param0)
     ]);
@@ -923,7 +929,7 @@ export class Contract extends SmartContract {
     }
     let value = result.value;
     return CallResult.fromValue(
-      new Contract__batchesResult(value[0].toBigInt(), value[1].toI32())
+      new GodsUnchained_01__batchesResult(value[0].toBigInt(), value[1].toI32())
     );
   }
 
@@ -946,15 +952,20 @@ export class Contract extends SmartContract {
     return CallResult.fromValue(value[0].toI32());
   }
 
-  getDetails(tokenId: BigInt): Contract__getDetailsResult {
+  getDetails(tokenId: BigInt): GodsUnchained_01__getDetailsResult {
     let result = super.call("getDetails", [
       EthereumValue.fromUnsignedBigInt(tokenId)
     ]);
 
-    return new Contract__getDetailsResult(result[0].toI32(), result[1].toI32());
+    return new GodsUnchained_01__getDetailsResult(
+      result[0].toI32(),
+      result[1].toI32()
+    );
   }
 
-  try_getDetails(tokenId: BigInt): CallResult<Contract__getDetailsResult> {
+  try_getDetails(
+    tokenId: BigInt
+  ): CallResult<GodsUnchained_01__getDetailsResult> {
     let result = super.tryCall("getDetails", [
       EthereumValue.fromUnsignedBigInt(tokenId)
     ]);
@@ -963,7 +974,7 @@ export class Contract extends SmartContract {
     }
     let value = result.value;
     return CallResult.fromValue(
-      new Contract__getDetailsResult(value[0].toI32(), value[1].toI32())
+      new GodsUnchained_01__getDetailsResult(value[0].toI32(), value[1].toI32())
     );
   }
 
@@ -1174,15 +1185,18 @@ export class Contract extends SmartContract {
     return CallResult.fromValue(value[0].toBigInt());
   }
 
-  seasons(param0: BigInt): Contract__seasonsResult {
+  seasons(param0: BigInt): GodsUnchained_01__seasonsResult {
     let result = super.call("seasons", [
       EthereumValue.fromUnsignedBigInt(param0)
     ]);
 
-    return new Contract__seasonsResult(result[0].toI32(), result[1].toI32());
+    return new GodsUnchained_01__seasonsResult(
+      result[0].toI32(),
+      result[1].toI32()
+    );
   }
 
-  try_seasons(param0: BigInt): CallResult<Contract__seasonsResult> {
+  try_seasons(param0: BigInt): CallResult<GodsUnchained_01__seasonsResult> {
     let result = super.tryCall("seasons", [
       EthereumValue.fromUnsignedBigInt(param0)
     ]);
@@ -1191,7 +1205,7 @@ export class Contract extends SmartContract {
     }
     let value = result.value;
     return CallResult.fromValue(
-      new Contract__seasonsResult(value[0].toI32(), value[1].toI32())
+      new GodsUnchained_01__seasonsResult(value[0].toI32(), value[1].toI32())
     );
   }
 }

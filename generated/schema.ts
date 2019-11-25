@@ -50,15 +50,6 @@ export class Owner extends Entity {
   set tokens(value: Array<string>) {
     this.set("tokens", Value.fromStringArray(value));
   }
-
-  get balance(): BigInt {
-    let value = this.get("balance");
-    return value.toBigInt();
-  }
-
-  set balance(value: BigInt) {
-    this.set("balance", Value.fromBigInt(value));
-  }
 }
 
 export class Token extends Entity {
@@ -100,21 +91,117 @@ export class Token extends Entity {
     this.set("owner", Value.fromString(value));
   }
 
-  get proto(): i32 {
+  get proto(): string | null {
     let value = this.get("proto");
-    return value.toI32();
+    if (value === null) {
+      return null;
+    } else {
+      return value.toString();
+    }
   }
 
-  set proto(value: i32) {
-    this.set("proto", Value.fromI32(value));
+  set proto(value: string | null) {
+    if (value === null) {
+      this.unset("proto");
+    } else {
+      this.set("proto", Value.fromString(value as string));
+    }
   }
 
-  get quality(): i32 {
+  get quality(): string | null {
     let value = this.get("quality");
-    return value.toI32();
+    if (value === null) {
+      return null;
+    } else {
+      return value.toString();
+    }
   }
 
-  set quality(value: i32) {
-    this.set("quality", Value.fromI32(value));
+  set quality(value: string | null) {
+    if (value === null) {
+      this.unset("quality");
+    } else {
+      this.set("quality", Value.fromString(value as string));
+    }
+  }
+}
+
+export class Proto extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save Proto entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save Proto entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("Proto", id.toString(), this);
+  }
+
+  static load(id: string): Proto | null {
+    return store.get("Proto", id) as Proto | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get tokens(): Array<string> {
+    let value = this.get("tokens");
+    return value.toStringArray();
+  }
+
+  set tokens(value: Array<string>) {
+    this.set("tokens", Value.fromStringArray(value));
+  }
+}
+
+export class Quality extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save Quality entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save Quality entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("Quality", id.toString(), this);
+  }
+
+  static load(id: string): Quality | null {
+    return store.get("Quality", id) as Quality | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get tokens(): Array<string> {
+    let value = this.get("tokens");
+    return value.toStringArray();
+  }
+
+  set tokens(value: Array<string>) {
+    this.set("tokens", Value.fromStringArray(value));
   }
 }

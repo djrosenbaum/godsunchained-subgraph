@@ -267,7 +267,7 @@ export class OwnershipTransferred__Params {
   }
 }
 
-export class Contract__getBatchResult {
+export class GodsUnchained_02__getBatchResult {
   value0: BigInt;
   value1: i32;
 
@@ -284,7 +284,7 @@ export class Contract__getBatchResult {
   }
 }
 
-export class Contract__protosResult {
+export class GodsUnchained_02__protosResult {
   value0: boolean;
   value1: boolean;
   value2: i32;
@@ -332,7 +332,7 @@ export class Contract__protosResult {
   }
 }
 
-export class Contract__batchesResult {
+export class GodsUnchained_02__batchesResult {
   value0: BigInt;
   value1: i32;
 
@@ -349,7 +349,7 @@ export class Contract__batchesResult {
   }
 }
 
-export class Contract__getDetailsResult {
+export class GodsUnchained_02__getDetailsResult {
   value0: i32;
   value1: i32;
 
@@ -366,7 +366,7 @@ export class Contract__getDetailsResult {
   }
 }
 
-export class Contract__seasonsResult {
+export class GodsUnchained_02__seasonsResult {
   value0: i32;
   value1: i32;
 
@@ -383,9 +383,9 @@ export class Contract__seasonsResult {
   }
 }
 
-export class Contract extends SmartContract {
-  static bind(address: Address): Contract {
-    return new Contract("Contract", address);
+export class GodsUnchained_02 extends SmartContract {
+  static bind(address: Address): GodsUnchained_02 {
+    return new GodsUnchained_02("GodsUnchained_02", address);
   }
 
   supportsInterface(interfaceId: Bytes): boolean {
@@ -405,25 +405,6 @@ export class Contract extends SmartContract {
     }
     let value = result.value;
     return CallResult.fromValue(value[0].toBoolean());
-  }
-
-  cardQualities(param0: BigInt): i32 {
-    let result = super.call("cardQualities", [
-      EthereumValue.fromUnsignedBigInt(param0)
-    ]);
-
-    return result[0].toI32();
-  }
-
-  try_cardQualities(param0: BigInt): CallResult<i32> {
-    let result = super.tryCall("cardQualities", [
-      EthereumValue.fromUnsignedBigInt(param0)
-    ]);
-    if (result.reverted) {
-      return new CallResult();
-    }
-    let value = result.value;
-    return CallResult.fromValue(value[0].toI32());
   }
 
   mythicTradable(param0: i32): boolean {
@@ -492,6 +473,25 @@ export class Contract extends SmartContract {
     return CallResult.fromValue(value[0].toBigInt());
   }
 
+  getProto(_tokenId: BigInt): i32 {
+    let result = super.call("getProto", [
+      EthereumValue.fromUnsignedBigInt(_tokenId)
+    ]);
+
+    return result[0].toI32();
+  }
+
+  try_getProto(_tokenId: BigInt): CallResult<i32> {
+    let result = super.tryCall("getProto", [
+      EthereumValue.fromUnsignedBigInt(_tokenId)
+    ]);
+    if (result.reverted) {
+      return new CallResult();
+    }
+    let value = result.value;
+    return CallResult.fromValue(value[0].toI32());
+  }
+
   addressToUserID(param0: Address): BigInt {
     let result = super.call("addressToUserID", [
       EthereumValue.fromAddress(param0)
@@ -524,6 +524,25 @@ export class Contract extends SmartContract {
     let result = super.tryCall("mythicApproved", [
       EthereumValue.fromI32(param0),
       EthereumValue.fromAddress(param1)
+    ]);
+    if (result.reverted) {
+      return new CallResult();
+    }
+    let value = result.value;
+    return CallResult.fromValue(value[0].toBoolean());
+  }
+
+  isOld(_tokenId: BigInt): boolean {
+    let result = super.call("isOld", [
+      EthereumValue.fromUnsignedBigInt(_tokenId)
+    ]);
+
+    return result[0].toBoolean();
+  }
+
+  try_isOld(_tokenId: BigInt): CallResult<boolean> {
+    let result = super.tryCall("isOld", [
+      EthereumValue.fromUnsignedBigInt(_tokenId)
     ]);
     if (result.reverted) {
       return new CallResult();
@@ -608,18 +627,33 @@ export class Contract extends SmartContract {
     return CallResult.fromValue(value[0].toBytes());
   }
 
-  getBatch(index: BigInt): Contract__getBatchResult {
+  migrating(): boolean {
+    let result = super.call("migrating", []);
+
+    return result[0].toBoolean();
+  }
+
+  try_migrating(): CallResult<boolean> {
+    let result = super.tryCall("migrating", []);
+    if (result.reverted) {
+      return new CallResult();
+    }
+    let value = result.value;
+    return CallResult.fromValue(value[0].toBoolean());
+  }
+
+  getBatch(index: BigInt): GodsUnchained_02__getBatchResult {
     let result = super.call("getBatch", [
       EthereumValue.fromUnsignedBigInt(index)
     ]);
 
-    return new Contract__getBatchResult(
+    return new GodsUnchained_02__getBatchResult(
       result[0].toBigInt(),
       result[1].toI32()
     );
   }
 
-  try_getBatch(index: BigInt): CallResult<Contract__getBatchResult> {
+  try_getBatch(index: BigInt): CallResult<GodsUnchained_02__getBatchResult> {
     let result = super.tryCall("getBatch", [
       EthereumValue.fromUnsignedBigInt(index)
     ]);
@@ -628,13 +662,16 @@ export class Contract extends SmartContract {
     }
     let value = result.value;
     return CallResult.fromValue(
-      new Contract__getBatchResult(value[0].toBigInt(), value[1].toI32())
+      new GodsUnchained_02__getBatchResult(
+        value[0].toBigInt(),
+        value[1].toI32()
+      )
     );
   }
 
-  mintCard(to: Address, _proto: i32, _quality: i32): BigInt {
+  mintCard(_to: Address, _proto: i32, _quality: i32): BigInt {
     let result = super.call("mintCard", [
-      EthereumValue.fromAddress(to),
+      EthereumValue.fromAddress(_to),
       EthereumValue.fromI32(_proto),
       EthereumValue.fromI32(_quality)
     ]);
@@ -642,9 +679,9 @@ export class Contract extends SmartContract {
     return result[0].toBigInt();
   }
 
-  try_mintCard(to: Address, _proto: i32, _quality: i32): CallResult<BigInt> {
+  try_mintCard(_to: Address, _proto: i32, _quality: i32): CallResult<BigInt> {
     let result = super.tryCall("mintCard", [
-      EthereumValue.fromAddress(to),
+      EthereumValue.fromAddress(_to),
       EthereumValue.fromI32(_proto),
       EthereumValue.fromI32(_quality)
     ]);
@@ -846,12 +883,12 @@ export class Contract extends SmartContract {
     return CallResult.fromValue(value[0].toBytes());
   }
 
-  protos(param0: BigInt): Contract__protosResult {
+  protos(param0: BigInt): GodsUnchained_02__protosResult {
     let result = super.call("protos", [
       EthereumValue.fromUnsignedBigInt(param0)
     ]);
 
-    return new Contract__protosResult(
+    return new GodsUnchained_02__protosResult(
       result[0].toBoolean(),
       result[1].toBoolean(),
       result[2].toI32(),
@@ -864,7 +901,7 @@ export class Contract extends SmartContract {
     );
   }
 
-  try_protos(param0: BigInt): CallResult<Contract__protosResult> {
+  try_protos(param0: BigInt): CallResult<GodsUnchained_02__protosResult> {
     let result = super.tryCall("protos", [
       EthereumValue.fromUnsignedBigInt(param0)
     ]);
@@ -873,7 +910,7 @@ export class Contract extends SmartContract {
     }
     let value = result.value;
     return CallResult.fromValue(
-      new Contract__protosResult(
+      new GodsUnchained_02__protosResult(
         value[0].toBoolean(),
         value[1].toBoolean(),
         value[2].toI32(),
@@ -906,15 +943,18 @@ export class Contract extends SmartContract {
     return CallResult.fromValue(value[0].toBoolean());
   }
 
-  batches(param0: BigInt): Contract__batchesResult {
+  batches(param0: BigInt): GodsUnchained_02__batchesResult {
     let result = super.call("batches", [
       EthereumValue.fromUnsignedBigInt(param0)
     ]);
 
-    return new Contract__batchesResult(result[0].toBigInt(), result[1].toI32());
+    return new GodsUnchained_02__batchesResult(
+      result[0].toBigInt(),
+      result[1].toI32()
+    );
   }
 
-  try_batches(param0: BigInt): CallResult<Contract__batchesResult> {
+  try_batches(param0: BigInt): CallResult<GodsUnchained_02__batchesResult> {
     let result = super.tryCall("batches", [
       EthereumValue.fromUnsignedBigInt(param0)
     ]);
@@ -923,7 +963,7 @@ export class Contract extends SmartContract {
     }
     let value = result.value;
     return CallResult.fromValue(
-      new Contract__batchesResult(value[0].toBigInt(), value[1].toI32())
+      new GodsUnchained_02__batchesResult(value[0].toBigInt(), value[1].toI32())
     );
   }
 
@@ -946,15 +986,35 @@ export class Contract extends SmartContract {
     return CallResult.fromValue(value[0].toI32());
   }
 
-  getDetails(tokenId: BigInt): Contract__getDetailsResult {
+  old(): Address {
+    let result = super.call("old", []);
+
+    return result[0].toAddress();
+  }
+
+  try_old(): CallResult<Address> {
+    let result = super.tryCall("old", []);
+    if (result.reverted) {
+      return new CallResult();
+    }
+    let value = result.value;
+    return CallResult.fromValue(value[0].toAddress());
+  }
+
+  getDetails(tokenId: BigInt): GodsUnchained_02__getDetailsResult {
     let result = super.call("getDetails", [
       EthereumValue.fromUnsignedBigInt(tokenId)
     ]);
 
-    return new Contract__getDetailsResult(result[0].toI32(), result[1].toI32());
+    return new GodsUnchained_02__getDetailsResult(
+      result[0].toI32(),
+      result[1].toI32()
+    );
   }
 
-  try_getDetails(tokenId: BigInt): CallResult<Contract__getDetailsResult> {
+  try_getDetails(
+    tokenId: BigInt
+  ): CallResult<GodsUnchained_02__getDetailsResult> {
     let result = super.tryCall("getDetails", [
       EthereumValue.fromUnsignedBigInt(tokenId)
     ]);
@@ -963,7 +1023,7 @@ export class Contract extends SmartContract {
     }
     let value = result.value;
     return CallResult.fromValue(
-      new Contract__getDetailsResult(value[0].toI32(), value[1].toI32())
+      new GodsUnchained_02__getDetailsResult(value[0].toI32(), value[1].toI32())
     );
   }
 
@@ -1005,9 +1065,9 @@ export class Contract extends SmartContract {
     return CallResult.fromValue(value[0].toString());
   }
 
-  mintCards(to: Address, _protos: Array<i32>, _qualities: Array<i32>): BigInt {
+  mintCards(_to: Address, _protos: Array<i32>, _qualities: Array<i32>): BigInt {
     let result = super.call("mintCards", [
-      EthereumValue.fromAddress(to),
+      EthereumValue.fromAddress(_to),
       EthereumValue.fromI32Array(_protos),
       EthereumValue.fromI32Array(_qualities)
     ]);
@@ -1016,12 +1076,12 @@ export class Contract extends SmartContract {
   }
 
   try_mintCards(
-    to: Address,
+    _to: Address,
     _protos: Array<i32>,
     _qualities: Array<i32>
   ): CallResult<BigInt> {
     let result = super.tryCall("mintCards", [
-      EthereumValue.fromAddress(to),
+      EthereumValue.fromAddress(_to),
       EthereumValue.fromI32Array(_protos),
       EthereumValue.fromI32Array(_qualities)
     ]);
@@ -1140,17 +1200,17 @@ export class Contract extends SmartContract {
     return CallResult.fromValue(value[0].toBoolean());
   }
 
-  cardProtos(param0: BigInt): i32 {
-    let result = super.call("cardProtos", [
-      EthereumValue.fromUnsignedBigInt(param0)
+  getQuality(_tokenId: BigInt): i32 {
+    let result = super.call("getQuality", [
+      EthereumValue.fromUnsignedBigInt(_tokenId)
     ]);
 
     return result[0].toI32();
   }
 
-  try_cardProtos(param0: BigInt): CallResult<i32> {
-    let result = super.tryCall("cardProtos", [
-      EthereumValue.fromUnsignedBigInt(param0)
+  try_getQuality(_tokenId: BigInt): CallResult<i32> {
+    let result = super.tryCall("getQuality", [
+      EthereumValue.fromUnsignedBigInt(_tokenId)
     ]);
     if (result.reverted) {
       return new CallResult();
@@ -1174,15 +1234,18 @@ export class Contract extends SmartContract {
     return CallResult.fromValue(value[0].toBigInt());
   }
 
-  seasons(param0: BigInt): Contract__seasonsResult {
+  seasons(param0: BigInt): GodsUnchained_02__seasonsResult {
     let result = super.call("seasons", [
       EthereumValue.fromUnsignedBigInt(param0)
     ]);
 
-    return new Contract__seasonsResult(result[0].toI32(), result[1].toI32());
+    return new GodsUnchained_02__seasonsResult(
+      result[0].toI32(),
+      result[1].toI32()
+    );
   }
 
-  try_seasons(param0: BigInt): CallResult<Contract__seasonsResult> {
+  try_seasons(param0: BigInt): CallResult<GodsUnchained_02__seasonsResult> {
     let result = super.tryCall("seasons", [
       EthereumValue.fromUnsignedBigInt(param0)
     ]);
@@ -1191,7 +1254,7 @@ export class Contract extends SmartContract {
     }
     let value = result.value;
     return CallResult.fromValue(
-      new Contract__seasonsResult(value[0].toI32(), value[1].toI32())
+      new GodsUnchained_02__seasonsResult(value[0].toI32(), value[1].toI32())
     );
   }
 }
@@ -1522,6 +1585,66 @@ export class BurnCall__Outputs {
   }
 }
 
+export class CopyUntilCall extends EthereumCall {
+  get inputs(): CopyUntilCall__Inputs {
+    return new CopyUntilCall__Inputs(this);
+  }
+
+  get outputs(): CopyUntilCall__Outputs {
+    return new CopyUntilCall__Outputs(this);
+  }
+}
+
+export class CopyUntilCall__Inputs {
+  _call: CopyUntilCall;
+
+  constructor(call: CopyUntilCall) {
+    this._call = call;
+  }
+
+  get gasThreshold(): BigInt {
+    return this._call.inputValues[0].value.toBigInt();
+  }
+}
+
+export class CopyUntilCall__Outputs {
+  _call: CopyUntilCall;
+
+  constructor(call: CopyUntilCall) {
+    this._call = call;
+  }
+}
+
+export class SetBaseURICall extends EthereumCall {
+  get inputs(): SetBaseURICall__Inputs {
+    return new SetBaseURICall__Inputs(this);
+  }
+
+  get outputs(): SetBaseURICall__Outputs {
+    return new SetBaseURICall__Outputs(this);
+  }
+}
+
+export class SetBaseURICall__Inputs {
+  _call: SetBaseURICall;
+
+  constructor(call: SetBaseURICall) {
+    this._call = call;
+  }
+
+  get uri(): string {
+    return this._call.inputValues[0].value.toString();
+  }
+}
+
+export class SetBaseURICall__Outputs {
+  _call: SetBaseURICall;
+
+  constructor(call: SetBaseURICall) {
+    this._call = call;
+  }
+}
+
 export class SetPropertyCall extends EthereumCall {
   get inputs(): SetPropertyCall__Inputs {
     return new SetPropertyCall__Inputs(this);
@@ -1577,7 +1700,7 @@ export class MintCardCall__Inputs {
     this._call = call;
   }
 
-  get to(): Address {
+  get _to(): Address {
     return this._call.inputValues[0].value.toAddress();
   }
 
@@ -1983,7 +2106,7 @@ export class MintCardsCall__Inputs {
     this._call = call;
   }
 
-  get to(): Address {
+  get _to(): Address {
     return this._call.inputValues[0].value.toAddress();
   }
 
@@ -2003,8 +2126,34 @@ export class MintCardsCall__Outputs {
     this._call = call;
   }
 
-  get value0(): BigInt {
+  get id(): BigInt {
     return this._call.outputValues[0].value.toBigInt();
+  }
+}
+
+export class CopyNextBatchCall extends EthereumCall {
+  get inputs(): CopyNextBatchCall__Inputs {
+    return new CopyNextBatchCall__Inputs(this);
+  }
+
+  get outputs(): CopyNextBatchCall__Outputs {
+    return new CopyNextBatchCall__Outputs(this);
+  }
+}
+
+export class CopyNextBatchCall__Inputs {
+  _call: CopyNextBatchCall;
+
+  constructor(call: CopyNextBatchCall) {
+    this._call = call;
+  }
+}
+
+export class CopyNextBatchCall__Outputs {
+  _call: CopyNextBatchCall;
+
+  constructor(call: CopyNextBatchCall) {
+    this._call = call;
   }
 }
 
@@ -2136,6 +2285,36 @@ export class TransferOwnershipCall__Outputs {
   }
 }
 
+export class SetMigratingCall extends EthereumCall {
+  get inputs(): SetMigratingCall__Inputs {
+    return new SetMigratingCall__Inputs(this);
+  }
+
+  get outputs(): SetMigratingCall__Outputs {
+    return new SetMigratingCall__Outputs(this);
+  }
+}
+
+export class SetMigratingCall__Inputs {
+  _call: SetMigratingCall;
+
+  constructor(call: SetMigratingCall) {
+    this._call = call;
+  }
+
+  get _migrating(): boolean {
+    return this._call.inputValues[0].value.toBoolean();
+  }
+}
+
+export class SetMigratingCall__Outputs {
+  _call: SetMigratingCall;
+
+  constructor(call: SetMigratingCall) {
+    this._call = call;
+  }
+}
+
 export class ConstructorCall extends EthereumCall {
   get inputs(): ConstructorCall__Inputs {
     return new ConstructorCall__Inputs(this);
@@ -2153,16 +2332,20 @@ export class ConstructorCall__Inputs {
     this._call = call;
   }
 
+  get _old(): Address {
+    return this._call.inputValues[0].value.toAddress();
+  }
+
   get _batchSize(): BigInt {
-    return this._call.inputValues[0].value.toBigInt();
+    return this._call.inputValues[1].value.toBigInt();
   }
 
   get _name(): string {
-    return this._call.inputValues[1].value.toString();
+    return this._call.inputValues[2].value.toString();
   }
 
   get _symbol(): string {
-    return this._call.inputValues[2].value.toString();
+    return this._call.inputValues[3].value.toString();
   }
 }
 
