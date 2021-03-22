@@ -5,13 +5,13 @@
 // }
 
 async function getCardsFromAddress(address) {
-    return await fetch('https://api.thegraph.com/subgraphs/id/QmXZdWFJedzz5umg8Bo5qwav8sPyeLCJ2gzBcaoAWWuj2i', {
+    return await fetch('https://api.thegraph.com/subgraphs/name/djrosenbaum/godsunchained', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
     },
-    body: JSON.stringify({query: `{ owners(where:{ id: "${address}" }) { balance tokens(first: 10, skip:${getSkip()}) { id proto quality } } }`})
+    body: JSON.stringify({query: `{ owners(where:{ id: "${address}" }) { tokens(first: 10, skip:${getSkip()}) { id quality proto { id } } } }`})
     })
     .then(r => r.json())
     // .then(data => console.log('data returned:', data.data));
@@ -25,7 +25,7 @@ function getMarkup(data) {
     const { tokens } = data.data.owners[0];
 
     return tokens.map((token) => {
-        return `<a href="https://etherscan.io/token/0x629cdec6acc980ebeebea9e5003bcd44db9fc5ce?a=${token.id}" target="_blank"><div class="card-wrapper"><composited-card class="card" protoId="${token.proto}" quality="${token.quality}" responsiveSrcsetSizes="(min-width: 250px) 160px, 320px"></composited-card><div class="tokenid">${token.id}</div></div></a>`;
+        return `<a href="https://etherscan.io/token/0x629cdec6acc980ebeebea9e5003bcd44db9fc5ce?a=${token.id}" target="_blank"><div class="card-wrapper"><composited-card class="card" protoId="${token.proto.id}" quality="${token.quality}" responsiveSrcsetSizes="(min-width: 250px) 160px, 320px"></composited-card><div class="tokenid">${token.id}</div></div></a>`;
     }).join('');
 }
 
